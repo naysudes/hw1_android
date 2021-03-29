@@ -8,12 +8,12 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-public class FrOfNumber extends Fragment {
+public class FragmentOfNumber extends Fragment {
 
     private String num;
     private int color;
 
-    public FrOfNumber() {
+    public FragmentOfNumber() {
     }
 
     public void SetArguments(String num, int color) {
@@ -31,9 +31,9 @@ public class FrOfNumber extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.number_fr, container, false);
-        TextView number_from_rv = view.findViewById(R.id.number);
-        number_from_rv.setText(num);
-        number_from_rv.setTextColor(color);
+        TextView numRV = view.findViewById(R.id.number);
+        numRV.setText(num);
+        numRV.setTextColor(color);
         return view;
 
     }

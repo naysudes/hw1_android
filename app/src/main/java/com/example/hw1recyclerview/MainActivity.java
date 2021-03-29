@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container_of_fragments, new FrRV())
+                    .add(R.id.container_of_fragments, new FragmentRecyclerView())
                     .commit();
         }
     }

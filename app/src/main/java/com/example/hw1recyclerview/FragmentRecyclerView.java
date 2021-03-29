@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class FrRV extends Fragment {
+public class FragmentRecyclerView extends Fragment {
 
-    public FrRV() {
+    public FragmentRecyclerView() {
     }
 
     @Override
@@ -63,12 +63,12 @@ public class FrRV extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FrOfNumber NewNumber = new FrOfNumber();
+                    FragmentOfNumber NewNumber = new FragmentOfNumber();
                     NewNumber.SetArguments(((TextView) v.findViewById(R.id.number_from_rv)).getText().toString()
                             , ((TextView) v.findViewById(R.id.number_from_rv)).getCurrentTextColor());
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container_of_fragments, NewNumber)
-                            .addToBackStack(FrOfNumber.class.getSimpleName()).commit();
+                            .addToBackStack(FragmentOfNumber.class.getSimpleName()).commit();
                 }
             });
         }
