@@ -18,34 +18,43 @@ public class DataSource {
 
             int color;
 
-            if (i % 2 == 1) {color = Color.BLUE;}
-            else {color = Color.RED;}
+            if (i % 2 == 1) {
+                color = Color.BLUE;
+            } else {
+                color = Color.RED;
+            }
 
             list_of_numbers.add(new NumberModel(i, color));
         }
     }
 
-    public void addData(NumberModel model){ list_of_numbers.add(model);}
+    public void addData(NumberModel model) {
+        list_of_numbers.add(model);
+    }
 
-    public void addDataOnClick()
-    {
+    public void addDataOnClick() {
         List<NumberModel> numbers = ourInstance.getData();
-        NumberModel number = numbers.get(numbers.size()-1);
+        NumberModel number = numbers.get(numbers.size() - 1);
 
         int color;
         int Date = number.getNumber();
 
-        if(Date % 2 == 1) { color = Color.RED;}
-        else { color = Color.BLUE;}
+        if (Date % 2 == 1) {
+            color = Color.RED;
+        } else {
+            color = Color.BLUE;
+        }
 
-        list_of_numbers.add(new NumberModel((Date+1),color));
+        list_of_numbers.add(new NumberModel((Date + 1), color));
     }
 
     static DataSource getInstance() {
         return ourInstance;
     }
 
-    public List<NumberModel> getData() { return list_of_numbers;}
+    public List<NumberModel> getData() {
+        return list_of_numbers;
+    }
 
     public static class NumberModel {
 
@@ -57,8 +66,12 @@ public class DataSource {
             this.color = color;
         }
 
-        public int getNumber() { return number;}
+        public int getNumber() {
+            return number;
+        }
 
-        public int getColor() { return color;}
+        public int getColor() {
+            return color;
+        }
     }
 }

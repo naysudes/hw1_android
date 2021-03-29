@@ -8,12 +8,13 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-public class Fr_of_number extends Fragment {
+public class FrOfNumber extends Fragment {
 
     private String num;
     private int color;
 
-    public Fr_of_number(){}
+    public FrOfNumber() {
+    }
 
     public void SetArguments(String num, int color) {
         this.num = num;

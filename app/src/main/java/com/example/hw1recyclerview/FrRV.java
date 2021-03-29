@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Fr_RV extends Fragment {
+public class FrRV extends Fragment {
 
-    public Fr_RV(){}
+    public FrRV() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,17 +26,15 @@ public class Fr_RV extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        View view =  inflater.inflate(R.layout.rv_fr, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.rv_fr, container, false);
 
         List<DataSource.NumberModel> elements = DataSource.getInstance().getData();
         final RecyclerView recyclerView = view.findViewById(R.id.recycler);
         int columns;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             columns = 3;
-        }
-        else columns = 4;
+        } else columns = 4;
 
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
         final MyAdapter adapter = new MyAdapter(elements);
@@ -48,61 +47,63 @@ public class Fr_RV extends Fragment {
                 recyclerView.scrollToPosition(adapter.getItemCount());
                 DataSource.getInstance().addDataOnClick();
                 adapter.updateData(DataSource.getInstance().getData());
-                adapter.notifyDataSetChanged();
+                adapter.notifyItemInserted(adapter.getItemCount());
             }
         });
         return view;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder
-    {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public final TextView number;
-        public MyViewHolder(@NonNull View itemView)
-        {
+
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             number = itemView.findViewById(R.id.number_from_rv);
 
-            itemView.setOnClickListener(new View.OnClickListener()
-            {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v)
-                {
-                    Fr_of_number NewNumber = new Fr_of_number();
+                public void onClick(View v) {
+                    FrOfNumber NewNumber = new FrOfNumber();
                     NewNumber.SetArguments(((TextView) v.findViewById(R.id.number_from_rv)).getText().toString()
-                            ,((TextView) v.findViewById(R.id.number_from_rv)).getCurrentTextColor());
+                            , ((TextView) v.findViewById(R.id.number_from_rv)).getCurrentTextColor());
                     getFragmentManager().beginTransaction()
                             .replace(R.id.container_of_fragments, NewNumber)
-                            .addToBackStack(Fr_of_number.class.getSimpleName()).commit();
+                            .addToBackStack(FrOfNumber.class.getSimpleName()).commit();
                 }
             });
         }
 
     }
+
     public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         public List<DataSource.NumberModel> Data;
 
-        public MyAdapter(List<DataSource.NumberModel> data) {this.Data = data;}
+        public MyAdapter(List<DataSource.NumberModel> data) {
+            this.Data = data;
+        }
 
-        public void updateData(List<DataSource.NumberModel> data) {this.Data = data;}
+        public void updateData(List<DataSource.NumberModel> data) {
+            this.Data = data;
+        }
 
         @NonNull
         @Override
-        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-        {
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_elem, parent, false);
             return new MyViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position)
-        {
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             DataSource.NumberModel element = Data.get(position);
             holder.number.setText(String.valueOf(element.getNumber()));
             holder.number.setTextColor(element.getColor());
         }
 
         @Override
-        public int getItemCount() {return Data.size();}
+        public int getItemCount() {
+            return Data.size();
+        }
     }
 
 
